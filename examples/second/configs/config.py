@@ -5,7 +5,7 @@ from pathlib import Path
 from det3d.builder import build_box_coder
 from det3d.utils.config_tool import get_downsample_factor
 
-data_root_prefix = "/mnt/proj50/zhengwu"
+data_root_prefix = "/media/gx/tmp/SE-SSD"
 
 # norm_cfg = dict(type='SyncBN', eps=1e-3, momentum=0.01)
 norm_cfg = None
@@ -269,10 +269,12 @@ total_epochs = 60
 device_ids = range(8)
 dist_params = dict(backend="nccl", init_method="env://")
 log_level = "INFO"
-work_dir = "/mnt/proj50/zhengwu/saved_model/KITTI/proj52/megvii/second/" + TAG
+work_dir = data_root_prefix + "/work_dir/" + TAG
+# work_dir = "/mnt/proj50/zhengwu/saved_model/KITTI/proj52/megvii/second/" + TAG
 # load_from: "path of pre-trained checkpoint to initialize both teacher & student, e.g., CIA-SSD pre-trained model"
 # load_from = "/xxx/xxx/xxx/epoch_60.pth"
-load_from = "/mnt/proj50/zhengwu/saved_model/KITTI/proj52/megvii/second/pre_trained_model_2/epoch_60.pth"
+load_from = data_root_prefix + "/work_dir/checkpoints/se-ssd-model.pth"
+# load_from = "/mnt/proj50/zhengwu/saved_model/KITTI/proj52/megvii/second/pre_trained_model_2/epoch_60.pth"
 resume_from = None
 workflow = [("train", 60), ("val", 1)] if my_paras['enable_ssl'] else [("train", 60), ("val", 1)]
 save_file = False if TAG == "debug" or TAG == "exp_debug" or Path(work_dir, "Det3D").is_dir() else True

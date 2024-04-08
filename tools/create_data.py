@@ -50,7 +50,7 @@ def kitti_data_prep(root_path):
     #                   "num_points_in_gt": [n0, n1, n2, ..., -1, -1, -1],  # dc gt are counted as -1.
     #                  }
     #        }
-    #kitti_ds.create_kitti_info_file(root_path)
+    kitti_ds.create_kitti_info_file(root_path)
 
     # all points outside of image_range are removed and kept as reduced point_cloud .bin file.
     kitti_ds.create_reduced_point_cloud(root_path)
@@ -92,4 +92,4 @@ def lyft_data_prep(root_path, version="trainval"):
 
 if __name__ == "__main__":
     #fire.Fire()
-    kitti_data_prep("/data/zhengwu/KITTI/object")
+    kitti_data_prep("/media/gx/tmp/SE-SSD/KITTI/object")
